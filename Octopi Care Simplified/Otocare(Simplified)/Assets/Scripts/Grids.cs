@@ -5,17 +5,26 @@ using UnityEngine;
 public class Grids : MonoBehaviour {
 
     public GameObject[] LocomotionZones;
+    public ParticleSystem EmotionParticles;
+    public ParticleSystemRenderer EMPRenderer;
     Transform Target;
     public float Speed = 0.5f, SlideSpeed = 9;
     public float RotSpeed = 0.5f;
     public float closeDistance = 5.0f;
-    public bool Locomoting = false, Stopped = false;
-    public GameObject[] Expression;
+    public bool Locomoting = false, Stopped = false,EmotionalOverride = false,WithToy = false;
+    public string Override;
+    public GameObject[] Expression,Clothing;
+    public Material Happy, Sad, MoreBubbles;
+
 
     // Use this for initialization
     void Start () {
         LocomotionZones = GameObject.FindGameObjectsWithTag("LocomotionZone");
         StartCoroutine("WeAreGoingThere");
+        if (EmotionalOverride)
+        {
+            Sadness();
+        }
 	}
 	
 	// Update is called once per frame
@@ -24,42 +33,81 @@ public class Grids : MonoBehaviour {
         
         Stopped = true;
         Locomoting = true;
-        int TargetNo = (Random.Range(0, LocomotionZones.Length));
-        Target = LocomotionZones[TargetNo].transform;
+        if (!WithToy)
+        {
+            int TargetNo = (Random.Range(0, LocomotionZones.Length));
+            Target = LocomotionZones[TargetNo].transform;
+        }
+        else
+        {
+            GameObject Toy = GameObject.FindGameObjectWithTag("LostToy");
+            if (Toy != null)
+            {
+                Target = Toy.transform;
+            }
+            else
+            {
+                WithToy = false;
+            }
+            
+        }
         
         yield return new WaitForSeconds(Random.Range(1,10));
         Locomoting = false;
     }
 
-    public IEnumerator Puff ()
-    {
-        //GetComponent<Rigidbody2D>().velocity = transform.forward * Speed;
-        yield return null;
-    }
-
+    //I'm sure there is a more efficient way to do this - but right at this moment I cannot think of it!
     public void Toy()
     {
-        foreach (GameObject F in Expression)
+        if (!EmotionalOverride)
         {
-            F.SetActive(false);
+            foreach (GameObject F in Expression)
+            {
+                F.SetActive(false);
+            }
+            Expression[3].SetActive(true);
         }
-        Expression[3].SetActive(true);
+            EMPRenderer.material = Happy;
+            EmotionParticles.Play();
+        StartCoroutine("ResetEmotions");
+        
     }
     public void Wash()
     {
-        foreach (GameObject F in Expression)
+        if (!EmotionalOverride)
         {
-            F.SetActive(false);
+            foreach (GameObject F in Expression)
+            {
+                F.SetActive(false);
+            }
+
+            Expression[5].SetActive(true);
         }
-        Expression[5].SetActive(true);
+        EMPRenderer.material = MoreBubbles;
+        EmotionParticles.Play();
+        StartCoroutine("ResetEmotions");
     }
     public void Food()
+    {
+        if (!EmotionalOverride)
+        {
+            foreach (GameObject F in Expression)
+            {
+                F.SetActive(false);
+            }
+            Expression[2].SetActive(true);
+            EMPRenderer.material = Happy;
+            EmotionParticles.Play();
+            StartCoroutine("ResetEmotions");
+        }
+    }
+    public void Sadness()
     {
         foreach (GameObject F in Expression)
         {
             F.SetActive(false);
         }
-        Expression[2].SetActive(true);
+        Expression[1].SetActive(true);
     }
 
     void Update () {
@@ -87,7 +135,6 @@ public class Grids : MonoBehaviour {
                 transform.rotation = Quaternion.AngleAxis(angle * RotSpeed, (Vector3.forward)); 
                 //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward * RotSpeed);
                 print("Going)");
-                StartCoroutine("Puff");
                 transform.Translate(Vector2.up * Time.deltaTime * Speed);
 
             }
@@ -109,4 +156,17 @@ public class Grids : MonoBehaviour {
             
         }
 	}
+    public IEnumerator ResetEmotions()
+    {
+        yield return new WaitForSeconds(3);
+        if (!EmotionalOverride)
+        {
+            foreach (GameObject F in Expression)
+            {
+                F.SetActive(false);
+            }
+
+            Expression[0].SetActive(true);
+        }
+    }
 }

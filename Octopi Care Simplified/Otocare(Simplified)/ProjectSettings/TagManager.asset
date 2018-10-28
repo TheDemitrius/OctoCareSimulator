@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - LocomotionZone
+  - LostToy
   layers:
   - Default
   - TransparentFX
