@@ -50,14 +50,14 @@ public class CycleEngine : MonoBehaviour {
     {
         ClotheStuffsCC[Cycle].SetActive(true);
         ClotheStuffsNC[Cycle].SetActive(true);
-        if (Cycle == 1 || Cycle == 3 || Cycle == 5)
+        if (Cycle == 1 || Cycle == 3 || Cycle == 5 || Cycle == 7 || Cycle == 9)
         {
             foreach (GameObject Sleepy in Blankets)
             {
                 Sleepy.SetActive(true);
             }
         }
-        if (Cycle == 2 ||Cycle == 4)
+        if (Cycle == 2 ||Cycle == 4 || Cycle == 6 || Cycle == 8 || Cycle == 10)
         {
             ClotheStuffsCC[0].SetActive(true);
         }
