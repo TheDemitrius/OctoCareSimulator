@@ -30,6 +30,21 @@ public class CycleEngine : MonoBehaviour {
         {
             Reward();
         }
+        if (Input.GetKey (KeyCode.LeftControl))
+        {
+            if (Input.GetKey(KeyCode.LeftAlt))
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    PlayerPrefs.SetInt("CycleN", 0);
+                    Application.Quit();
+                }
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 	}
     void Reward()
     {

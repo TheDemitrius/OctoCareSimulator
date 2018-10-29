@@ -20,4 +20,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Cycle3 (Night2).unity
     guid: f632c673f10cddb4e8d780ffa8dc1d57
+  - enabled: 1
+    path: Assets/Cycle4 (Day3).unity
+    guid: 45c01a464d21e3b47891902fa5a1c4ab
+  - enabled: 1
+    path: Assets/Cycle5 (Night3).unity
+    guid: 4db4bf2d081353047844a012b4b44b09
+  - enabled: 1
+    path: Assets/Cycle6 (Day 4).unity
+    guid: c5e4151fb2953b94d8c2f27ca4d0afb7
+  - enabled: 1
+    path: Assets/Cycle7 (Night4).unity
+    guid: f42be30b85f21754c9f1b21fd6601854
+  - enabled: 1
+    path: Assets/Cycle8 (Day 5).unity
+    guid: 3335af8e2fceede4abe843d8e9fcb22c
+  - enabled: 1
+    path: Assets/Cycle9 (Night 5).unity
+    guid: 0e48be0d3f973a049a0de789c3f0baf8
+  - enabled: 1
+    path: Assets/Cycle10 (Day 6).unity
+    guid: 15877ed0b20e4be4b88f190514498dea
+  - enabled: 1
+    path: Assets/Cycle11 (STOP).unity
+    guid: 26cec4b5f5f099747a6d0152f511185a
   m_configObjects: {}

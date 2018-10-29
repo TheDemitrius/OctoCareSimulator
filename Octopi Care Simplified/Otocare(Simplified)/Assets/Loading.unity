@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reset: 0
-  Override: 1
+  Override: 0
 --- !u!1 &560573143
 GameObject:
   m_ObjectHideFlags: 0
